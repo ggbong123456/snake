@@ -5,7 +5,7 @@
 #include <string.h>
 
 #define BOARD_ROW (10)
-#define BOARD_COL (10)
+#define BOARD_COL (14)
 
 static char get_board_at(game_state_t* state,int x,int y){
  return state->board[x][y]; 
