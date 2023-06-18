@@ -134,23 +134,23 @@ static int incr_y(char c){
 }
 
 static char next_square(game_state_t* state,int snum){
- if(snum<0||snum>=state->num_snakes){
+   if(snum<0||snum>=state->num_snakes){
     printf("snake id incorrect");
     return '?';
- }
- if(!state->snakes[snum].live){
+   }
+   if(!state->snakes[snum].live){
     printf("snake has dead");
     return "?';
- }
- char head_dir=get_board_at(state,state->snakes[snum].head_x,state->snakes[snum].head_y);
- if(incr_x(head_dir)){
-  return get_board_at(state,state->snakes[snum].head_x+incr_x(head_dir),state->snakes[snum].head_y);
- }
- if(incr_y(head_dir)){
-  return get_board_at(state,state->snakes[snum].head_x,state->snakes[snum].head_y+incr_y(head_dir));
- }
- return '?';
-}
+   }
+   char head_dir=get_board_at(state,state->snakes[snum].head_x,state->snakes[snum].head_y);
+   if(incr_x(head_dir)){
+    return get_board_at(state,state->snakes[snum].head_x+incr_x(head_dir),state->snakes[snum].head_y);
+   }
+   if(incr_y(head_dir)){
+    return get_board_at(state,state->snakes[snum].head_x,state->snakes[snum].head_y+incr_y(head_dir));
+   }
+   return '?';
+  }
 
 static void update_head(game_state_t *state, int snum) {
  if(snum<0||snum>=state->num_snakes){
