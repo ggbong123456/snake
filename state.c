@@ -7,6 +7,18 @@
 #define BOARD_ROW (10)
 #define BOARD_COL (14)
 
+static char get_board_at(game_state_t *state, int x, int y);
+static void set_board_at(game_state_t *state, int x, int y, char ch);
+static bool is_tail(char c);
+static bool is_snake(char c);
+static char body_to_tail(char c);
+static int incr_x(char c);
+static int incr_y(char c);
+static void find_head(game_state_t *state, int snum);
+static char next_square(game_state_t *state, int snum);
+static void update_tail(game_state_t *state, int snum);
+static void update_head(game_state_t *state, int snum);
+
 static char get_board_at(game_state_t* state,int x,int y){
  return state->board[x][y]; 
 }
