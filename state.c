@@ -1,50 +1,27 @@
-#ifndef _SNK_STATE_H
-#define _SNK_STATE_H
-
+#include "state.h"
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-typedef struct snake_t {
-  unsigned int tail_x;
-  unsigned int tail_y;
-  unsigned int head_x;
-  unsigned int head_y;
+#define BOARD_ROW (10)
+#define BOARD_COL (10)
 
-  bool live;
-} snake_t;
-
-typedef struct game_state_t {
-  unsigned int x_size;
-  unsigned int y_size;
-
-  char **board;
-
-  unsigned int num_snakes;
-  snake_t* snakes;
-} game_state_t;
-
-game_state_t* create_default_state();
-void free_state(game_state_t* state);
-void print_board(game_state_t* state, FILE* fp);
-void save_board(game_state_t* state, char* filename);
-void update_state(game_state_t* state, int (*add_food)(game_state_t* state));
-game_state_t * initialize_snakes(game_state_t* state);
-game_state_t* load_board(char* filename);
-
-typedef enum {
-    TAIL_UP,
-    TAIL_LEFT,
-    TAIL_DOWN,
-    TAIL_RIGHT,
-} tail_state_m;
-
-typedef enum {
-    BODY_UP,
-    BODY_LEFT,
-    BODY_DOWN,
-    BODY_RIGHT,
-    BODY_DEAD,
-} body_state_m;
-
-extern const char SNAKE_TAIL[4];
-extern const char SNAKE_BODY[5];
+game_state_t* creat_default_state(){
+  game_state_t* default_state=(game_state_t*)malloc(sizeof(game_state_t));
+  default_state->x_size=BOARD_ROW;
+  default_state->y_size=BOARD_COL;
+  default_state->board=(char**)malloc(sizeof(char*)*BOARD_ROW );
+  for(int i=0;i<BOARD_ROW;i++){
+    default_state->board[i]=(char*)malloc(sizeof(char)*BOARD_COL);
+    if(i==0||i==BOARD_ROW-1){
+      memset(default_state->board[i],'#',sizeof(char)*BOARD_COL);
+    }
+    else{
+      memset(default_state->board[i],' ',sizeof(char)*BOARD_COL);
+      memset(default_state->board[i],'#',sizeof(char));
+      memset(default_state->board[i]+BOARD_COL-1,'#',sizeof(char));
+    }
+  }
+  
+  
