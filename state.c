@@ -143,11 +143,13 @@ static char next_square(game_state_t* state,int snum){
     return "?';
    }
    char head_dir=get_board_at(state,state->snakes[snum].head_x,state->snakes[snum].head_y);
-   if(incr_x(head_dir)){
-    return get_board_at(state,state->snakes[snum].head_x+incr_x(head_dir),state->snakes[snum].head_y);
+   int dx=incr_x(head_dir);
+   int dy=incr_y(head_dir);
+   if(dx){
+    return get_board_at(state,state->snakes[snum].head_x+dx,state->snakes[snum].head_y);
    }
-   if(incr_y(head_dir)){
-    return get_board_at(state,state->snakes[snum].head_x,state->snakes[snum].head_y+incr_y(head_dir));
+   if(dy){
+    return get_board_at(state,state->snakes[snum].head_x,state->snakes[snum].head_y+dy);
    }
    return '?';
   }
