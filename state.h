@@ -20,4 +20,14 @@ typedef struct game_state_t{
 }game_state_t;
 
 
+game_state_t* creat_default_state();
+void free_state(game_state_t *state);
+void printf_board(game_state_t *state,FILE* fp);
+void save_board(game_state_t *state,char* filename);
+void update_state(game_state_t *state, int (*add_food)(game_state_t *state));
+game_state_t *load_board(char *filename);
+game_state_t *initialize_snakes(game_state_t *state);
+
+
+
 #endif
